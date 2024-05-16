@@ -1,0 +1,14 @@
+{
+  "name": "poc-node-with-cpp",
+  "version": "1.0.0",
+  "description": "A proof of concept of NodeJS calling C++ functions",
+  "main": "index.js",
+  "scripts": {
+    "build": "node-gyp configure build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-gyp": "^10.1.0"
+  }
+}
