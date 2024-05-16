@@ -1,14 +1,16 @@
-#include <node.h>
+#include "napi.h"
 
-void TestAddon(const v8::FunctionCallbackInfo<v8::Value> &args)
+Napi::String TestAddon(const Napi::CallbackInfo &args)
 {
-    v8::Isolate *isolate = args.GetIsolate();
-    args.GetReturnValue().Set(v8::String::NewFromUtf8(isolate, "Test tested :)").ToLocalChecked());
+    Napi::Env env = args.Env();
+
+    return Napi::String::New(env, "Test tested x2 :)");
 }
 
-void Initialize(v8::Local<v8::Object> exports)
+Napi::Object Init(Napi::Env env, Napi::Object exports)
 {
-    NODE_SET_METHOD(exports, "testAddon", TestAddon);
+    exports.Set(Napi::String::New(env, "testAddon"), Napi::Function::New(env, TestAddon));
+    return exports;
 }
 
-NODE_MODULE(addon, Initialize)
+NODE_API_MODULE(addon, Init)
